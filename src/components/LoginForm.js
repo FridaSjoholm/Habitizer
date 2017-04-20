@@ -7,18 +7,40 @@ class LoginForm extends Component {
   state = { email: '', password: '', error: '', loading: false }
 
   onButtonPress() {
-    this.setState({ error: '', loading: true });
+  const { email, password } = this.state;
 
-    console.log('button');
-    const { email, password } = this.state;
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .catch(() => {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-          .catch(() => {
-            this.setState({ error: 'Authentication Failed' });
-          });
-      });
+  this.setState({ error: '', loading: true });
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(this.onLoginSuccess.bind(this))
+    .catch(() => {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(this.onLoginSuccess.bind(this))
+        .catch(this.onLoginFail.bind(this));
+    });
+}
+
+  onLoginFail() {
+    console.log('Fail');
+    console.log(this.state);
+    this.setState({
+
+      loading: false,
+      error: 'Authentication Failed'
+    });
   }
+
+  onLoginSuccess() {
+    console.log('Win');
+    console.log(this.state);
+    this.setState({
+      email: '',
+      password: '',
+      loading: false,
+      error: ''
+    });
+  }
+
   renderButton() {
     if (this.state.loading) {
       return <Spinner size="small" />;
@@ -31,7 +53,6 @@ class LoginForm extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <Card>
         <CardSection>
