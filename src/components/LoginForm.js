@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import firebase from 'firebase';
+import { connect } from
+import { emailChanged } from '../actions'
 import { Button, Card, CardSection, Input, Spinner } from './common';
 
 class LoginForm extends Component {
+  onEmailChange(text) {
+    this.props.emailChanged(text);
+  }
+
   state = { email: '', password: '', error: '', loading: false }
 
   onButtonPress() {
@@ -91,4 +97,4 @@ const styles = {
   }
 };
 
-export default LoginForm;
+export default connect(null, {emailChanged})(LoginForm);
