@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import firebase from 'firebase';
+import reducers from './reducers';
 import LoginForm from './components/LoginForm';
 
  class App extends Component {
@@ -17,10 +20,12 @@ import LoginForm from './components/LoginForm';
 
    render() {
      return (
-       <View>
-       <Text style={styles.textStyle}> This App is working! </Text>
-       <LoginForm />
-       </View>
+       <Provider store={createStore(reducers)}>
+         <View>
+           <Text style={styles.textStyle}> This App is working! </Text>
+           <LoginForm />
+         </View>
+       </Provider>
      );
    }
  }

@@ -1,4 +1,4 @@
-import { EMAIL_CHANGED } fro './types';
+import { EMAIL_CHANGED } from './types';
 
 export const emailChanged = (text) => {
   return {
