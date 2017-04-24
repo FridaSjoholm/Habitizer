@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Picker, Text } from 'react-native';
-import { habitUpdate } from '../actions';
+import { habitUpdate, habitCreate } from '../actions';
 import { Card, CardSection, Input, Button } from './common';
 
 class HabitCreate extends Component {
+  onButtonPress(){
+    const { chore, description, day } = this.props;
+    this.props.habitCreate({ chore, description, day: day || 'Monday' });
+  }
   render() {
     return (
       <Card>
@@ -45,7 +49,7 @@ class HabitCreate extends Component {
         </CardSection>
 
         <CardSection>
-          <Button>
+          <Button onPress={this.onButtonPress.bind(this)}>
             Create
           </Button>
         </CardSection>
@@ -68,4 +72,4 @@ const mapStateToProps = (state) => {
   return { chore, description, day };
 };
 
-export default connect(mapStateToProps, { habitUpdate })(HabitCreate);
+export default connect(mapStateToProps, { habitUpdate, habitCreate })(HabitCreate);
