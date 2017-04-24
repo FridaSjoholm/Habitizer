@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { habitsFetch } from '../actions'
 
 class HabitList extends Component {
+  componentWillMount() {
+    this.props.employeesFetch();
+  }
   render() {
     return (
       <View>
@@ -17,4 +22,4 @@ class HabitList extends Component {
   }
 }
 
-export default HabitList;
+export default connect(null, { habitsFetch })(HabitList);
