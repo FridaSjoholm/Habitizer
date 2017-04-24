@@ -5,7 +5,7 @@ import { habitUpdate, habitCreate } from '../actions';
 import { Card, CardSection, Input, Button } from './common';
 
 class HabitCreate extends Component {
-  onButtonPress(){
+  onButtonPress() {
     const { chore, description, day } = this.props;
     this.props.habitCreate({ chore, description, day: day || 'Monday' });
   }
