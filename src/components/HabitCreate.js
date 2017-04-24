@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text } from 'react-native';
+import { Picker, Text } from 'react-native';
 import { habitUpdate } from '../actions';
 import { Card, CardSection, Input, Button } from './common';
 
@@ -25,9 +25,23 @@ class HabitCreate extends Component {
             onChangeText={value => this.props.habitUpdate({ prop: 'description', value })}
           />
         </CardSection>
-
+        <Text style={styles.pickerTextStyle}>
+          Select shift
+        </Text>
         <CardSection>
-          <Text>Daypicker</Text>
+          <Picker
+            selectedValue={this.props.day}
+            onValueChange={value => this.props.habitUpdate({ prop: 'day', value })}
+            style={{ flex: 1 }}
+          >
+            <Picker.Item label="Monday" value="Monday" />
+            <Picker.Item label="Tuesday" value="Tuesday" />
+            <Picker.Item label="Wednesday" value="Wednesday" />
+            <Picker.Item label="Thursday" value="Thursday" />
+            <Picker.Item label="Friday" value="Friday" />
+            <Picker.Item label="Saturday" value="Saturday" />
+            <Picker.Item label="Sunday" value="Sunday" />
+          </Picker>
         </CardSection>
 
         <CardSection>
@@ -39,6 +53,16 @@ class HabitCreate extends Component {
     );
   }
 }
+const styles = {
+  pickerTextStyle: {
+    fontSize: 18,
+    paddingTop: 10,
+    color: '#f2dbd7',
+    alignSelf: 'center',
+    fontWeight: '600',
+  }
+};
+
 const mapStateToProps = (state) => {
   const { chore, description, day } = state.habitForm;
   return { chore, description, day };
