@@ -8,7 +8,7 @@ class HabitCreate extends Component {
       <Card>
         <CardSection>
           <Input
-            label="Habit"
+            label="Chore"
             placeholder="Vacuum"
           />
         </CardSection>
