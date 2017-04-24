@@ -5,3 +5,4 @@ export const LOGIN_USER_FAIL = 'login_user_fail';
 export const LOGIN_USER = 'login_user';
 export const HABIT_UPDATE = 'habit_update';
 export const HABIT_CREATE = 'habit_create';
+export const HABITS_FETCH_SUCCESS = 'habits_fetch_success';
