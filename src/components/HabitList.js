@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { ListView, View, Text } from 'react-native';
+import { ListView } from 'react-native';
 import { connect } from 'react-redux';
 import { habitsFetch } from '../actions';
 import ListItem from './ListItem';
@@ -29,16 +29,12 @@ class HabitList extends Component {
 
 
   render() {
-    console.log('HOHOHO');
     return (
-      <View>
-        <Text>theres something here</Text>
-        <ListView
-          enableEmptySections
-          dataSource={this.dataSource}
-          renderRow={this.renderRow}
-        />
-      </View>
+      <ListView
+        enableEmptySections
+        dataSource={this.dataSource}
+        renderRow={this.renderRow}
+      />
     );
   }
 }

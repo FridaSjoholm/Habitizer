@@ -3,6 +3,7 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import HabitList from './components/HabitList';
 import HabitCreate from './components/HabitCreate';
+import HabitEdit from './components/HabitEdit';
 
 const RouterComponent = () => {
   return (
@@ -20,11 +21,15 @@ const RouterComponent = () => {
           onRight={() => Actions.habitCreate()}
           initial
         />
-
         <Scene
           key="habitCreate"
           component={HabitCreate}
           title="Create Habit"
+        />
+        <Scene
+          key="habitEdit"
+          component={HabitEdit}
+          title="Edit habit"
         />
       </Scene>
     </Router>
