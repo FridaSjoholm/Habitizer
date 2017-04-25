@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk';
+import reducers from './reducers';
+import Router from './Router';
 
  class App extends Component {
    componentWillMount() {
@@ -15,21 +19,13 @@ import firebase from 'firebase';
    }
 
    render() {
+     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
      return (
-       <View>
-         <Text style={styles.textStyle}> This App is working! </Text>
-       </View>
+       <Provider store={store}>
+          <Router />
+       </Provider>
      );
    }
  }
-
- const styles = {
-   textStyle: {
-     fontSize: 20,
-     textAlign: 'center',
-     margin: 30,
-     color: 'pink'
-   }
- };
 
  export default App;
