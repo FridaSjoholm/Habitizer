@@ -3,7 +3,8 @@ import { Actions } from 'react-native-router-flux';
 import {
   HABIT_UPDATE,
   HABIT_CREATE,
-  HABITS_FETCH_SUCCESS
+  HABITS_FETCH_SUCCESS,
+  HABIT_SAVE_SUCCESS
 } from './types';
 
 export const habitUpdate = ({ prop, value }) => {
@@ -39,9 +40,12 @@ export const habitsFetch = () => {
 export const habitSave = ({ chore, description, day, uid }) => {
   const { currentUser } = firebase.auth();
 
-  return () => {
+  return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/habits/${uid}`)
       .set({ chore, description, day })
-      .then(() => console.log('saved!'));
+      .then(() => {
+        dispatch({ type: HABIT_SAVE_SUCCESS });
+        Actions.habitList({ type: 'reset' });
+      });
   };
 };

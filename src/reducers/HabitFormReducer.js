@@ -1,6 +1,7 @@
 import {
   HABIT_UPDATE,
-  HABIT_CREATE
+  HABIT_CREATE,
+  HABIT_SAVE_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -14,6 +15,8 @@ export default ( state = INITIAL_STATE, action ) => {
     case HABIT_UPDATE:
       return { ...state, [action.payload.prop]: action.payload.value };
     case HABIT_CREATE:
+      return INITIAL_STATE;
+    case HABIT_SAVE_SUCCESS:
       return INITIAL_STATE;
     default:
       return state;
