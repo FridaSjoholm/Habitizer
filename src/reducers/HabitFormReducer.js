@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   day: ''
 };
 
-export default ( state = INITIAL_STATE, action ) => {
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case HABIT_UPDATE:
       return { ...state, [action.payload.prop]: action.payload.value };

@@ -1,11 +1,12 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardSection, Button } from './common';
+import { Card, CardSection, Button, Confirm } from './common';
 import HabitForm from './HabitForm';
 import { habitUpdate, habitSave } from '../actions';
 
 class HabitEdit extends Component {
+  state = { showModal: false };
   componentWillMount() {
     _.each(this.props.habit, (value, prop) => {
       this.props.habitUpdate({ prop, value });
@@ -25,6 +26,18 @@ class HabitEdit extends Component {
             Save Changes
           </Button>
         </CardSection>
+
+        <CardSection>
+          <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
+            Delete Habit
+          </Button>
+        </CardSection>
+
+        <Confirm
+          visible={this.state.showModal}
+        >
+          Are you sure you want to remove this habit?
+        </Confirm>
       </Card>
     );
   }
