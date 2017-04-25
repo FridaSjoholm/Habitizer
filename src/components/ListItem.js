@@ -5,7 +5,7 @@ import { CardSection } from './common';
 
 class ListItem extends Component {
   onRowPress() {
-    Actions.habitCreate({ habit: this.props.habit });
+    Actions.habitEdit({ habit: this.props.habit });
   }
 
   render() {
