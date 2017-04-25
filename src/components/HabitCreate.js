@@ -10,6 +10,7 @@ class HabitCreate extends Component {
     this.props.habitCreate({ chore, description, day: day || 'Monday' });
   }
   render() {
+    console.log(this.props.habit);
     return (
       <Card>
         <CardSection>
