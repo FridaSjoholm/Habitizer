@@ -27,6 +27,7 @@ export const habitCreate = ({ chore, description, day }) => {
 
 export const habitsFetch = () => {
   const { currentUser } = firebase.auth();
+
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/habits`)
       .on('value', snapshot => {
