@@ -35,3 +35,13 @@ export const habitsFetch = () => {
       });
   };
 };
+
+export const habitSave = ({ chore, description, day, uid }) => {
+  const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/habits/${uid}`)
+      .set({ chore, description, day })
+      .then(() => console.log('saved!'));
+  };
+};

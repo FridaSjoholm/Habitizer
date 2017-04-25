@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Button } from './common';
 import HabitForm from './HabitForm';
-import { habitUpdate } from '../actions';
+import { habitUpdate, habitSave } from '../actions';
 
 class HabitEdit extends Component {
   componentWillMount() {
@@ -13,8 +13,7 @@ class HabitEdit extends Component {
   }
   onButtonPress() {
     const { chore, description, day } = this.props;
-    console.log(chore, description, day);
-    console.log(this.props);
+    this.props.habitSave({ chore, description, day, uid: this.props.habit.uid });
   }
   render() {
     return (
@@ -36,4 +35,4 @@ const mapStateToProps = (state) => {
   return { chore, description, day };
 };
 
-export default connect(mapStateToProps, { habitUpdate })(HabitEdit);
+export default connect(mapStateToProps, { habitUpdate, habitSave })(HabitEdit);
