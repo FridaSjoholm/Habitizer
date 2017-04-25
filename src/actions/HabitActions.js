@@ -49,3 +49,15 @@ export const habitSave = ({ chore, description, day, uid }) => {
       });
   };
 };
+
+export const habitDelete = ({ uid }) => {
+  const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/habits/${uid}`)
+      .remove()
+      .then(() => {
+        Actions.habitList({ type: 'reset' });
+      });
+  };
+};
