@@ -4,13 +4,12 @@ import { CardSection } from './common';
 
 class ListItem extends Component {
   render() {
-    console.log(this.props.habit);
     const { chore } = this.props.habit;
 
     return (
       <CardSection>
         <Text style={styles.titleStyle}>
-          thing
+          {chore}
         </Text>
       </CardSection>
     );
