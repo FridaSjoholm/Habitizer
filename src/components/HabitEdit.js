@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { habitUpdate, habitCreate } from '../actions';
 import { Card, CardSection, Button } from './common';
 import HabitForm from './HabitForm';
 
 class HabitCreate extends Component {
-  onButtonPress() {
-    const { chore, description, day } = this.props;
-    this.props.habitCreate({ chore, description, day: day || 'Monday' });
-  }
   render() {
     return (
       <Card>
@@ -16,7 +11,7 @@ class HabitCreate extends Component {
 
         <CardSection>
           <Button onPress={this.onButtonPress.bind(this)}>
-            Create
+            Save Changes
           </Button>
         </CardSection>
       </Card>
