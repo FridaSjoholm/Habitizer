@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback } from 'react-native';
+import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { CardSection } from './common';
 
@@ -14,16 +14,17 @@ class ListItem extends Component {
     return (
       <TouchableWithoutFeedback
         onPress={this.onRowPress.bind(this)}
-        style={styles.containerStyle}
       >
-        <CardSection>
+        <View>
+          <CardSection>
             <Text style={styles.textStyle}>
               {chore}
             </Text>
             <Text style={styles.rightStyle}>
               {day}
             </Text>
-        </CardSection>
+          </CardSection>
+        </View>
       </TouchableWithoutFeedback>
     );
   }
